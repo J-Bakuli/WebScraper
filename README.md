@@ -9,7 +9,7 @@ The WebScraper does the following:
  
  My assumptions:
  1. A branch office status is "СостАк" attribute in xml and not "ПризАк"
- 2. #companies equals #entries as "Документ" tag in xml. In that case companies mean branch offices which a separate record in RAFP. 
+ 2. #companies equals #entries as "Документ" tag in xml. In that case companies mean branch offices as separate records in RAFP. 
  In contract, it could be assumed that #companies mean #headquarters ("НаимИЮЛПолн"), #branch offices ("НаимАФППолн") either distinct or with duplicates.
  
  The current code does not include tests and can be improved by adding them.
