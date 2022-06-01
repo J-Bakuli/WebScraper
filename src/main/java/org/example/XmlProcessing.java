@@ -100,15 +100,20 @@ public class XmlProcessing {
         try (PrintWriter writer = new PrintWriter(csvPath)) {
             StringBuilder sb = new StringBuilder();
             Set<String> countryStatuses = countryStatusNumber.keySet();
-            writer.write("Страна регистрации головной компании,Статус филиала/представительства,Количество компаний");
+            writer.write("Страна регистрации головной компании,Статус филиала/представительства,Количество компаний \n");
+            int sum = 0;
             for (String pair : countryStatuses) {
-                sb.append('\n');
                 sb.append(pair);
                 sb.append(',');
                 sb.append(countryStatusNumber.get(pair));
                 sb.append('\n');
                 writer.write(sb.toString());
                 sb.setLength(0);
+                sum += countryStatusNumber.get(pair);
+            }
+            if (sum != countries.size()) {
+                log.error("Sum of all frequencies should be equal to #entries in xml file");
+                throw new RuntimeException("Wrong document data or check the formula");
             }
         } catch (FileNotFoundException e) {
             log.error(e.getMessage(), e);
